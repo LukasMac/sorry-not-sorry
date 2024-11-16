@@ -183,7 +183,7 @@
 
       @keyframes slideInBottomCenter {
         from {
-          transform: translateY(100%);
+          transform: translateY(70%);
         }
         to {
           transform: translateY(0);
@@ -232,6 +232,61 @@
       .grid-item {
         position: relative;
       }
+
+      @keyframes slideInTopCenter {
+        from {
+          transform: translateX(0) translateY(-100%) rotate(180deg);
+        }
+        to {
+          transform: translateX(0) translateY(0) rotate(180deg);
+        }
+      }
+
+      .top-center {
+        top: -10%;
+        transform: rotate(180deg);
+        width: 110%;
+        animation: slideInTopCenter 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        animation-delay: 1.2s; /* Add delay here */
+        animation-fill-mode: backwards;
+      }
+
+      @keyframes slideInCenterRight {
+        from {
+          transform: translateX(100%) translateY(0) rotate(-79deg);
+        }
+        to {
+          transform: translateX(0) translateY(0) rotate(-79deg);
+        }
+      }
+
+      .center-right {
+        right: -67%;
+        transform: rotate(-79deg);
+        width: 85%;
+        animation: slideInCenterRight 0.3s
+          cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        animation-delay: 1.4s; /* Add delay here */
+        animation-fill-mode: backwards;
+      }
+
+      @keyframes slideInTopLeft {
+        from {
+          transform: translateX(-100%) translateY(-100%) rotate(141deg);
+        }
+        to {
+          transform: translateX(0) translateY(0) rotate(141deg);
+        }
+      }
+
+      .top-left {
+        left: -50%;
+        transform: rotate(141deg);
+        width: 85%;
+        animation: slideInTopLeft 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        animation-delay: 1.5s; /* Add delay here */
+        animation-fill-mode: backwards;
+      }
     </style>
   </head>
   <body>
@@ -246,9 +301,13 @@
       <!-- <img src="images/7.svg" class="card card7" alt="Card 2" /> -->
 
       <div class="grid">
+        <div class="grid-item">
+          <img src="images/pop-up-5.svg" class="card top-left" alt="Card 2" />
+        </div>
         <div class="grid-item"></div>
-        <div class="grid-item"></div>
-        <div class="grid-item"></div>
+        <div class="grid-item">
+          <img src="images/pop-up-4.svg" class="card top-center" alt="Card 2" />
+        </div>
         <div class="grid-item"></div>
         <div class="grid-item"></div>
 
@@ -256,7 +315,13 @@
         <div class="grid-item"></div>
         <div class="grid-item"></div>
         <div class="grid-item"></div>
-        <div class="grid-item"></div>
+        <div class="grid-item">
+          <img
+            src="images/pop-up-6.svg"
+            class="card center-right"
+            alt="Card 2"
+          />
+        </div>
 
         <div class="grid-item">
           <img src="images/pop-up-1.svg" class="card card10" alt="Card 2" />
