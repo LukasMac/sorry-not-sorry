@@ -14,12 +14,30 @@
       body {
         /* --background-color: #fff8e5; */
         --background-color: #fff;
+        --amber: #ffbf00;
+        --rouge: #d91a21;
+        --turquoise: #3cc1c8;
+        --violet: #953ec6;
+
         margin: 0;
         background-color: var(--background-color);
         font-family: "Baloo Bhaijaan 2", sans-serif;
         font-optical-sizing: auto;
         font-weight: 400;
         font-style: normal;
+      }
+
+      .amber {
+        background-color: var(--amber);
+      }
+      .rouge {
+        background-color: var(--rouge);
+      }
+      .turquoise {
+        background-color: var(--turquoise);
+      }
+      .violet {
+        background-color: var(--violet);
       }
 
       .hero {
@@ -950,6 +968,56 @@
           transform: translateX(-50%);
         }
       }
+
+      .deck-preview {
+        padding: 60px 20px;
+        overflow: hidden;
+      }
+
+      .cards-row {
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        margin: 0 -10px; /* Compensate for card spacing */
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+        scrollbar-width: none; /* Hide scrollbar Firefox */
+        margin: -24px;
+      }
+
+      .cards-row::-webkit-scrollbar {
+        display: none; /* Hide scrollbar Chrome/Safari */
+      }
+
+      .deck-card {
+        flex: 0 0 auto;
+        width: 200px;
+        height: 280px;
+        margin-right: -100px; /* Negative margin for overlap */
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        cursor: pointer;
+        position: relative;
+      }
+
+      /* Hover effect */
+      .deck-card:hover {
+        transform: translateY(-20px);
+        z-index: 2;
+      }
+
+      /* Make sure last card's right edge is visible */
+      .deck-card:last-child {
+        margin-right: 0;
+      }
+
+      /* Add some spacing for mobile */
+      @media (max-width: 768px) {
+        .deck-card {
+          margin-right: -60px; /* Less overlap on mobile */
+        }
+      }
     </style>
   </head>
   <body>
@@ -1293,16 +1361,26 @@
       <div class="sorrynotsorry"></div>
       <img src="images/bg-after.svg" alt="" class="bg-after" />
     </div>
+    <section class="deck-preview">
+      <h2>The Deck</h2>
+      <h3>Number Cards</h3>
+      <div class="cards-row"></div>
+      <h3>Action Cards</h3>
+      <div class="cards-row action-cards-row"></div>
+    </section>
     <section id="rules" class="content-section">
       <h2>Rules</h2>
-
       <div class="rules-container">
         <div class="rule-item">
           <div class="rule-card">
-            <img src="path/to/card1.png" alt="Setup card example" />
+            <img
+              src="images/card_U-turn.png"
+              alt="U-turn card example"
+              class="amber"
+            />
           </div>
           <div class="rule-content">
-            <h3>1. Setup</h3>
+            <h3>U-turn</h3>
             <p>
               Shuffle the deck and deal 7 cards to each player. Place the
               remaining cards face down as the draw pile.
@@ -1312,10 +1390,14 @@
 
         <div class="rule-item">
           <div class="rule-card">
-            <img src="path/to/card2.png" alt="Turn card example" />
+            <img
+              src="images/card_Zzz.png"
+              alt="Sleep (Zzz...) card example"
+              class="amber"
+            />
           </div>
           <div class="rule-content">
-            <h3>2. Taking Turns</h3>
+            <h3>Sleep (Zzz...)</h3>
             <p>
               On your turn, draw a card and read the situation out loud. Choose
               another player who must respond with either a "Sorry" or "Not
@@ -1326,10 +1408,14 @@
 
         <div class="rule-item">
           <div class="rule-card">
-            <img src="path/to/card3.png" alt="Scoring card example" />
+            <img
+              src="images/card_+2.png"
+              alt="Draw Extra Two (+2) card example"
+              class="amber"
+            />
           </div>
           <div class="rule-content">
-            <h3>3. Scoring</h3>
+            <h3>Draw Extra Two (+2)</h3>
             <p>
               If other players vote that your response was genuine and fitting,
               you keep the card as a point. If not, the card goes to the discard
@@ -1340,10 +1426,44 @@
 
         <div class="rule-item">
           <div class="rule-card">
-            <img src="path/to/card4.png" alt="Winning card example" />
+            <img
+              src="images/card_+4.png"
+              alt="Draw Extra Four (+4) card example"
+            />
           </div>
           <div class="rule-content">
-            <h3>4. Winning</h3>
+            <h3>Draw Extra Four (+4)</h3>
+            <p>
+              The first player to collect 5 cards wins! They are crowned the
+              Sorry Not Sorry champion of brutal honesty.
+            </p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <div class="rule-card">
+            <img src="images/card_Thief.png" alt="Thief card example" />
+          </div>
+          <div class="rule-content">
+            <h3>Thief</h3>
+            <p>
+              If other players vote that your response was genuine and fitting,
+              you keep the card as a point. If not, the card goes to the discard
+              pile.
+            </p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <div class="rule-card">
+            <img
+              src="images/card_7.png"
+              alt="Number 7 card example"
+              class="amber"
+            />
+          </div>
+          <div class="rule-content">
+            <h3>Number 7</h3>
             <p>
               The first player to collect 5 cards wins! They are crowned the
               Sorry Not Sorry champion of brutal honesty.
@@ -1756,6 +1876,59 @@
         // Update progress bar width
         progressBar.style.width = `${scrolled}%`;
       });
+
+      // Add this to your JavaScript
+      function createDeckPreview() {
+        const numberCardsRow = document.querySelector(".cards-row");
+        const actionCardsRow = document.querySelector(".action-cards-row");
+        const numberCards = [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+        ];
+        const actionCards = [
+          "+2",
+          "+4",
+          "ColorChangeSilence",
+          "ColorChangeTalk",
+          "U-turn",
+          "Zzz",
+          "QuestionMark",
+          "Thief",
+        ];
+
+        // Create 20 cards (5 of each color)
+        numberCards.forEach((cardName) => {
+          const card = document.createElement("img");
+          card.className = "deck-card";
+          card.src = `images/card_${cardName}.png`;
+          card.classList.add("amber");
+
+          // Add card to row
+          numberCardsRow.appendChild(card);
+        });
+
+        actionCards.forEach((cardName) => {
+          const card = document.createElement("img");
+          card.className = "deck-card";
+          card.src = `images/card_${cardName}.png`;
+          card.classList.add("amber");
+
+          // Add card to row
+          actionCardsRow.appendChild(card);
+        });
+      }
+
+      // Call the function after DOM is loaded
+      document.addEventListener("DOMContentLoaded", createDeckPreview);
     </script>
   </body>
 </html>
