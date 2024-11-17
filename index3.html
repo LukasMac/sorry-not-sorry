@@ -12,7 +12,8 @@
     />
     <style>
       body {
-        --background-color: #fff8e5;
+        /* --background-color: #fff8e5; */
+        --background-color: #fff;
         margin: 0;
         background-color: var(--background-color);
         font-family: "Baloo Bhaijaan 2", sans-serif;
@@ -42,10 +43,10 @@
           height: 40px;
           bottom: -8px;
           right: 0;
-          background: linear-gradient(
+          /* background: linear-gradient(
             transparent 8%,
             var(--background-color) 70%
-          );
+          ); */
         }
       }
 
@@ -115,6 +116,13 @@
         left: 0;
         width: 100%;
         height: 110%;
+      }
+
+      .bg-after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 110%;
       }
 
       .card {
@@ -957,10 +965,8 @@
       </div>
     </nav>
 
-    <div class="cards-svg">
+    <template id="cardTemplate" style="display: none">
       <svg
-        id="cardTemplate"
-        style="display: none"
         data-name="Layer 1"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 177.99 503.97"
@@ -1260,7 +1266,7 @@
           </g>
         </g>
       </svg>
-    </div>
+    </template>
     <div class="hero">
       <div class="rays"></div>
       <div class="bg"></div>
@@ -1285,6 +1291,7 @@
         <div class="grid-item bottom-right"></div>
       </div>
       <div class="sorrynotsorry"></div>
+      <img src="images/bg-after.svg" alt="" class="bg-after" />
     </div>
     <section id="rules" class="content-section">
       <h2>Rules</h2>
@@ -1648,23 +1655,30 @@
 
       const cardsContainer = document.querySelectorAll(".grid-item");
       const template = document.querySelector("#cardTemplate");
+      const svgContent = template.content.querySelector("svg").innerHTML;
+      const svgElement = template.content.querySelector("svg");
+
+      // Create parser with correct namespace
+      const parser = new DOMParser();
 
       colors.forEach((color, index) => {
         if (color === "") return;
 
-        // Clone the template
-        const card = template.cloneNode(true);
+        const svg = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "svg"
+        );
+        svg.innerHTML = svgContent;
+        svg.setAttribute("viewBox", "0 0 177.99 503.97");
+        svg.setAttribute("preserveAspectRatio", "none");
+        svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        svg.setAttribute("width", "100%");
+        svg.setAttribute("height", "100%");
+        svg.setAttribute("fill", "none");
 
-        // Modify attributes
-        card.id = `card${index + 1}`;
-        card.style.display = "block";
+        svg.querySelector(".cls-21").setAttribute("style", `fill: ${color}`);
 
-        // Change the specific style attribute
-        card.querySelector(".cls-21").style.fill = color;
-        // OR for a class-based approach:
-        card.classList.add(`card${index + 1}`);
-
-        cardsContainer[index].appendChild(card);
+        cardsContainer[index].appendChild(svg);
       });
 
       // Handle scroll indicator click
