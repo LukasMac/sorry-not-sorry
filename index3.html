@@ -34,6 +34,19 @@
         align-items: center;
         position: relative;
         overflow: hidden;
+
+        &:after {
+          content: "";
+          position: absolute;
+          left: 0;
+          height: 40px;
+          bottom: -8px;
+          right: 0;
+          background: linear-gradient(
+            transparent 8%,
+            var(--background-color) 70%
+          );
+        }
       }
 
       @keyframes spin {
@@ -108,7 +121,7 @@
         position: absolute;
       }
 
-      h1 {
+      /* h1 {
         color: white;
         margin: 0;
         text-shadow: -1px -1px 0 #e02626, 1px -1px 0 #e02626, -1px 1px 0 #e02626,
@@ -118,6 +131,46 @@
         position: sticky;
         top: 0;
         background: var(--background-color);
+      } */
+      h1 {
+        font-size: clamp(2.5rem, 8vw, 5rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        color: #2d2d2d;
+        text-align: center;
+        margin: 0;
+        padding: 0 20px;
+        position: relative;
+
+        /* Text shadow for depth */
+        text-shadow: 3px 3px 0 rgba(224, 38, 38, 0.2),
+          -1px -1px 0 rgba(0, 0, 0, 0.05);
+
+        /* Optional: gradient text */
+        background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Optional: Add a decorative element */
+      h1::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: #e02626;
+        border-radius: 2px;
+      }
+
+      /* Optional: Add hover animation */
+      h1:hover {
+        transform: scale(1.02);
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
 
       .content {
@@ -215,7 +268,6 @@
       /* Active state */
       .nav-link:active {
         transform: scale(0.95) rotate(0deg);
-        box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
       }
 
       /* Bouncy animation on nav appear */
@@ -501,7 +553,7 @@
         animation: bounce 2s infinite;
         color: #e02626;
         z-index: 100;
-        opacity: 0.8;
+        opacity: 1;
         transition: opacity 0.2s;
       }
 
@@ -523,6 +575,372 @@
       }
       .scroll-indicator:hover {
         opacity: 1;
+      }
+
+      .rules {
+        padding: 12px;
+        overflow: hidden;
+      }
+
+      .content-section {
+        padding: 80px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .content-section h2 {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 48px;
+        letter-spacing: -0.03em;
+        color: #2d2d2d;
+        position: relative;
+      }
+
+      .content-section h2::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background: #e02626;
+        border-radius: 2px;
+      }
+
+      .section-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .section-content > p {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        text-align: center;
+        margin-bottom: 48px;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 32px;
+        margin-top: 48px;
+      }
+
+      .feature {
+        padding: 24px;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+      }
+
+      .feature:hover {
+        transform: translateY(-5px);
+      }
+
+      .feature h3 {
+        font-size: 1.4rem;
+        margin-bottom: 16px;
+        color: #2d2d2d;
+      }
+
+      .feature p {
+        line-height: 1.5;
+        color: #4a4a4a;
+      }
+
+      .faq-item {
+        margin-bottom: 32px;
+        padding: 24px;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease;
+      }
+
+      .faq-item:hover {
+        transform: scale(1.02);
+      }
+
+      .faq-item h3 {
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+        color: #2d2d2d;
+        display: flex;
+        align-items: center;
+      }
+
+      .faq-item h3::before {
+        content: "❓";
+        margin-right: 12px;
+        font-size: 1.4rem;
+      }
+
+      .faq-item p {
+        line-height: 1.5;
+        color: #4a4a4a;
+        padding-left: 36px;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .content-section {
+          padding: 60px 16px;
+        }
+
+        .feature-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .footer {
+        margin-top: 80px;
+        padding: 60px 20px 20px;
+        background: #1a1a1a;
+        color: #ffffff;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 48px;
+        margin-bottom: 48px;
+      }
+
+      .footer-section h4 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .footer-section h4::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 32px;
+        height: 3px;
+        background: #e02626;
+        border-radius: 2px;
+      }
+
+      .footer-section p {
+        line-height: 1.6;
+        opacity: 0.8;
+        margin-bottom: 20px;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .social-link {
+        color: white;
+        text-decoration: none;
+        padding: 8px 16px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        transition: all 0.2s ease;
+      }
+
+      .social-link:hover {
+        background: #e02626;
+        transform: translateY(-2px);
+      }
+
+      .footer-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footer-nav a {
+        color: white;
+        text-decoration: none;
+        opacity: 0.8;
+        transition: all 0.2s ease;
+      }
+
+      .footer-nav a:hover {
+        opacity: 1;
+        color: #e02626;
+        transform: translateX(4px);
+      }
+
+      .footer-section a {
+        color: white;
+        text-decoration: none;
+        opacity: 0.8;
+        transition: opacity 0.2s ease;
+      }
+
+      .footer-section a:hover {
+        opacity: 1;
+      }
+
+      .footer-bottom {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .footer-bottom p {
+        opacity: 0.6;
+      }
+
+      .footer-legal {
+        display: flex;
+        gap: 24px;
+      }
+
+      .footer-legal a {
+        color: white;
+        text-decoration: none;
+        opacity: 0.6;
+        transition: opacity 0.2s ease;
+      }
+
+      .footer-legal a:hover {
+        opacity: 1;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .footer-content {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .footer-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .footer-legal {
+          justify-content: center;
+        }
+      }
+
+      .rules-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .rule-item {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        margin-bottom: 60px;
+        position: relative;
+      }
+
+      /* Add connecting line between rules */
+      .rule-item:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        bottom: -30px;
+        left: 100px;
+        width: 2px;
+        height: 30px;
+        background: linear-gradient(to bottom, #e02626 50%, transparent);
+      }
+
+      .rule-card {
+        flex-shrink: 0;
+        width: 200px;
+        height: 280px;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+
+      .rule-card:hover {
+        transform: rotate(-2deg) translateY(-5px);
+      }
+
+      .rule-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .rule-content {
+        flex-grow: 1;
+      }
+
+      .rule-content h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+        color: #2d2d2d;
+        display: flex;
+        align-items: center;
+      }
+
+      .rule-content h3::before {
+        content: "";
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background: #e02626;
+        border-radius: 50%;
+        margin-right: 12px;
+        transform: scale(0.8);
+        transition: transform 0.2s ease;
+      }
+
+      .rule-item:hover h3::before {
+        transform: scale(1);
+      }
+
+      .rule-content p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #4a4a4a;
+      }
+
+      /* Alternate layout for even items */
+      .rule-item:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 768px) {
+        .rule-item {
+          flex-direction: column;
+          text-align: center;
+          gap: 24px;
+        }
+
+        .rule-item:nth-child(even) {
+          flex-direction: column;
+        }
+
+        .rule-content h3 {
+          justify-content: center;
+        }
+
+        .rule-item:not(:last-child)::after {
+          left: 50%;
+          transform: translateX(-50%);
+        }
       }
     </style>
   </head>
@@ -868,7 +1286,328 @@
       </div>
       <div class="sorrynotsorry"></div>
     </div>
-    <section class="content" style="height: 1000px"></section>
+    <section id="rules" class="content-section">
+      <h2>Rules</h2>
+
+      <div class="rules-container">
+        <div class="rule-item">
+          <div class="rule-card">
+            <img src="path/to/card1.png" alt="Setup card example" />
+          </div>
+          <div class="rule-content">
+            <h3>1. Setup</h3>
+            <p>
+              Shuffle the deck and deal 7 cards to each player. Place the
+              remaining cards face down as the draw pile.
+            </p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <div class="rule-card">
+            <img src="path/to/card2.png" alt="Turn card example" />
+          </div>
+          <div class="rule-content">
+            <h3>2. Taking Turns</h3>
+            <p>
+              On your turn, draw a card and read the situation out loud. Choose
+              another player who must respond with either a "Sorry" or "Not
+              Sorry" answer.
+            </p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <div class="rule-card">
+            <img src="path/to/card3.png" alt="Scoring card example" />
+          </div>
+          <div class="rule-content">
+            <h3>3. Scoring</h3>
+            <p>
+              If other players vote that your response was genuine and fitting,
+              you keep the card as a point. If not, the card goes to the discard
+              pile.
+            </p>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <div class="rule-card">
+            <img src="path/to/card4.png" alt="Winning card example" />
+          </div>
+          <div class="rule-content">
+            <h3>4. Winning</h3>
+            <p>
+              The first player to collect 5 cards wins! They are crowned the
+              Sorry Not Sorry champion of brutal honesty.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p>
+        <strong>Setup:</strong> The game is for 2-10 players, ages 7 and over.
+        Every player starts with seven cards, and they are dealt face down. The
+        rest of the cards are placed in a Draw Pile face down. Next to the pile
+        a space should be designated for a Discard Pile. The top card should be
+        placed in the Discard Pile, and the game begins!
+      </p>
+
+      <p><strong>Card deck is composed of these cards:</strong></p>
+
+      <p><strong>Regular cards:</strong></p>
+      <p>
+        All regular cards have a number from 0 to 10 (excluding 9, because it
+        can be easily confused with 6) and also a background color which can be
+        one of four colors: amber, violet, turquoise, rouge.
+      </p>
+      <ul>
+        <li>
+          There are 8 cards of each number (two for each color) except 0 number
+          cards. There are only 4 cards with number 0 - one for each number.
+        </li>
+      </ul>
+
+      <p>
+        <strong>Action Cards:</strong> Besides the number cards, there are
+        several other cards that help mix up the game. These are called Action
+        or Symbol cards.
+      </p>
+      <ul>
+        <li>
+          <strong>U-turn</strong> – If going clockwise, switch to
+          counterclockwise or vice versa. It can only be played on a card that
+          matches by color, or on another Reverse card. If turned up at the
+          beginning of play, the dealer goes first, and the player to the
+          dealer’s right is next (normally it would be the player to the
+          dealer’s left). There are in total 4 reverse cards, one for each
+          color.
+        </li>
+        <li>
+          <strong>Sleep</strong> – When a player places this card, the next
+          player has to skip their turn. It can only be played on a card that
+          matches by color, or on another Skip card. If turned up at the
+          beginning of play, the first player (to the dealer’s left) loses
+          his/her turn. The next player to that player’s right starts the game
+          instead. There are in total 4 skip cards, one for each color.
+        </li>
+        <li>
+          <strong>Draw Two</strong> – When a person places this card, the next
+          player will have to pick up two cards and forfeit his/her turn. It can
+          only be played on a card that matches by color, or on another Draw
+          Two. If turned up at the beginning of play, the first player draws two
+          cards and gets skipped. There are in total 8 skip cards, two for each
+          color.
+        </li>
+        <li>
+          <strong>Color change</strong> – This card represents all four colors,
+          and can be placed on any card. The player has to state which color it
+          will represent for the next player. It can be played regardless of
+          whether another card is available. If turned up at the beginning of
+          play, the first player chooses what color to continue play. This card
+          cancels silent mode and players can start talking again. There are in
+          total 2 Color change cards.
+        </li>
+        <li>
+          <strong>Color change shhh mode</strong> – This card represents all
+          four colors, and can be placed on any card. The player has to state
+          which color it will represent for the next player. It can be played
+          regardless of whether another card is available. If turned up at the
+          beginning of play, the first player chooses what color to continue
+          play. This card also means that players can not talk anymore and if
+          anyone says any work they take two cards as a penalty. There are in
+          total 2 Color change shhh cards.
+        </li>
+        <li>
+          <strong>Color change Draw Four</strong> – This acts just like the
+          Color change card except that the next player also has to draw four
+          cards as well as forfeit his/her turn. With this card, you must have
+          no other alternative cards to play that matches the color of the card
+          previously played. If you play this card illegally, you may be
+          challenged by the other player to show your hand to him/her. If
+          guilty, you need to draw 4 cards. If not, the challenger needs to draw
+          6 cards instead. If turned up at the beginning of play, return this
+          card to the Draw pile, shuffle, and turn up a new one. There are 4
+          Color change draw four cards in total.
+        </li>
+        <li>
+          <strong>Thief</strong> - There are 2 thief cards in the deck. Player
+          who plays it can swap his/her hands with any player of his/her choice.
+          This card does not have a color therefore the previous card decides
+          the color.
+        </li>
+        <li>
+          <strong>Challenge player of your choice</strong> - Player who plays
+          this card has to challenge any player of his/her choice. The challenge
+          is simple, you both count to three and on number three with your
+          finger you show either one or two fingers. If both of you show the
+          same amount of fingers then the challenged player draws two cards
+          otherwise the challenger draws two cards.
+        </li>
+        <li>
+          <strong>Number card 7</strong> - once this card is played all players
+          have to put their hand in the middle and the player who is the last
+          one draws two cards as a penalty.
+        </li>
+      </ul>
+
+      <p>
+        <strong>Game Play:</strong> The first player is normally the player to
+        the left of the dealer (you can also choose the youngest player) and
+        gameplay usually follows a clockwise direction. Every player views
+        his/her cards and tries to match the card in the Discard Pile.
+      </p>
+      <p>
+        You have to match either by the number, color, or the symbol/Action. For
+        instance, if the Discard Pile has a red card that is an 8 you have to
+        place either a red card or a card with an 8 on it. You can also play a
+        Color change card (which can alter current color in play).
+      </p>
+      <p>
+        If the player has no matches or they choose not to play any of their
+        cards even though they might have a match, they must draw a card from
+        the Draw pile. If that card can be played, play it. Otherwise, keep the
+        card, and the game moves on to the next person in turn. You can also
+        play a Color change card, or a Color change Draw Four card on your turn.
+      </p>
+      <p>
+        If a player before you plays “Color change draw four” or “draw two card”
+        the next player either draws four or two cards respectively OR the
+        player can pass it to the next player by playing draw four or draw two
+        cards respectively.
+      </p>
+      <p>
+        If the very first card is an action card then put it back to the middle
+        of the draw pile and take another card on the top until it’s not an
+        action card anymore.
+      </p>
+      <p>
+        At any time during the game, if the Draw Pile becomes depleted and no
+        one has yet won the round, take the Discard Pile, shuffle it, and turn
+        it over to regenerate a new Draw Pile.
+      </p>
+
+      <!-- ... (Rest of the content continues similarly) ... -->
+
+      <p>
+        Generally making any type of mistake during game play means that player
+        who made a mistake must draw two cards as a penalty.
+      </p>
+
+      <p><strong>Other special game play rules:</strong></p>
+      <ul>
+        <li><strong>Stacking cards:</strong> (Description as above)</li>
+        <!-- ... -->
+      </ul>
+
+      <!-- Continue with the rest of the rules, scoring, and two/four player rules in the same format -->
+    </section>
+
+    <section id="about" class="content-section">
+      <h2>About</h2>
+      <div class="section-content">
+        <p>
+          Sorry Not Sorry is a playful card game where players navigate through
+          awkward social situations with a mix of honesty and humor. Created for
+          those who love to laugh at life's uncomfortable moments!
+        </p>
+
+        <div class="feature-grid">
+          <div class="feature">
+            <h3>🎮 Fun First</h3>
+            <p>
+              Designed to create memorable moments and lots of laughter with
+              friends and family.
+            </p>
+          </div>
+          <div class="feature">
+            <h3>🤝 Social Bonds</h3>
+            <p>
+              Strengthen relationships through shared experiences and honest
+              conversations.
+            </p>
+          </div>
+          <div class="feature">
+            <h3>🎲 Easy to Play</h3>
+            <p>
+              Simple rules, endless possibilities. Perfect for 3-8 players, ages
+              16+.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="content-section">
+      <h2>FAQ</h2>
+      <div class="section-content">
+        <div class="faq-item">
+          <h3>How many players do I need?</h3>
+          <p>The game works best with 3-8 players. More players = more fun!</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How long does a game take?</h3>
+          <p>
+            A typical game lasts 30-45 minutes, but you can play as long as
+            you're having fun!
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Is this game family-friendly?</h3>
+          <p>
+            The game is recommended for ages 16+ due to some mature themes and
+            situations.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I add my own cards?</h3>
+          <p>
+            Absolutely! Creating your own cards adds a personal touch to the
+            game.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Sorry Not Sorry</h4>
+          <p>A game of awkward honesty and hilarious confessions.</p>
+          <div class="social-links">
+            <a href="#" class="social-link">🐦 Twitter</a>
+            <a href="#" class="social-link">📸 Instagram</a>
+            <a href="#" class="social-link">🎮 Discord</a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <nav class="footer-nav">
+            <a href="#rules">Rules</a>
+            <a href="#about">About</a>
+            <a href="#faq">FAQ</a>
+          </nav>
+        </div>
+
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <a href="mailto:hello@sorrynotsorry.game">hello@sorrynotsorry.game</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 Sorry Not Sorry. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+
     <div class="scroll-indicator">
       <svg
         width="24"
