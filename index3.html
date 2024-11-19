@@ -28,16 +28,20 @@
       }
 
       .amber {
-        background-color: var(--amber);
+        background: url("images/amber.png");
+        background-size: cover;
       }
       .rouge {
-        background-color: var(--rouge);
+        background: url("images/rouge.png");
+        background-size: cover;
       }
       .turquoise {
-        background-color: var(--turquoise);
+        background: url("images/turquoise.png");
+        background-size: cover;
       }
       .violet {
-        background-color: var(--violet);
+        background: url("images/violet.png");
+        background-size: cover;
       }
 
       .hero {
@@ -880,10 +884,22 @@
         content: "";
         position: absolute;
         bottom: -30px;
-        left: 100px;
+        left: 140px;
         width: 2px;
         height: 30px;
         background: linear-gradient(to bottom, #e02626 50%, transparent);
+      }
+
+      .rule-item:not(:last-child):nth-child(even)::after {
+        left: auto;
+        right: 140px;
+      }
+
+      .rule-card-container {
+        grid-area: card;
+        display: flex;
+        justify-content: center;
+        margin-inline: 40px;
       }
 
       .rule-card {
@@ -908,10 +924,14 @@
       }
 
       .rule-content {
+        display: grid;
+        grid-template-areas: "card title" "card content";
         flex-grow: 1;
       }
 
       .rule-content h3 {
+        grid-area: title;
+        align-self: flex-end;
         font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 12px;
@@ -937,6 +957,7 @@
       }
 
       .rule-content p {
+        grid-area: content;
         font-size: 1.1rem;
         line-height: 1.6;
         color: #4a4a4a;
@@ -945,6 +966,9 @@
       /* Alternate layout for even items */
       .rule-item:nth-child(even) {
         flex-direction: row-reverse;
+      }
+      .rule-item:nth-child(even) .rule-content {
+        grid-template-areas: "title card" "content card";
       }
 
       /* Responsive adjustments */
@@ -959,11 +983,17 @@
           flex-direction: column;
         }
 
+        .rule-content,
+        .rule-item:nth-child(even) .rule-content {
+          grid-template-areas: "title" "card" "content";
+        }
+
         .rule-content h3 {
           justify-content: center;
         }
 
-        .rule-item:not(:last-child)::after {
+        .rule-item:not(:last-child)::after,
+        .rule-item:not(:last-child):nth-child(even)::after {
           left: 50%;
           transform: translateX(-50%);
         }
@@ -1372,15 +1402,17 @@
       <h2>Rules</h2>
       <div class="rules-container">
         <div class="rule-item">
-          <div class="rule-card">
-            <img
-              src="images/card_U-turn.png"
-              alt="U-turn card example"
-              class="amber"
-            />
-          </div>
           <div class="rule-content">
             <h3>U-turn</h3>
+            <div class="rule-card-container">
+              <div class="rule-card">
+                <img
+                  src="images/card_U-turn.png"
+                  alt="U-turn card example"
+                  class="amber"
+                />
+              </div>
+            </div>
             <p>
               Shuffle the deck and deal 7 cards to each player. Place the
               remaining cards face down as the draw pile.
@@ -1389,15 +1421,17 @@
         </div>
 
         <div class="rule-item">
-          <div class="rule-card">
-            <img
-              src="images/card_Zzz.png"
-              alt="Sleep (Zzz...) card example"
-              class="amber"
-            />
-          </div>
           <div class="rule-content">
             <h3>Sleep (Zzz...)</h3>
+            <div class="rule-card-container">
+              <div class="rule-card">
+                <img
+                  src="images/card_Zzz.png"
+                  alt="Sleep (Zzz...) card example"
+                  class="amber"
+                />
+              </div>
+            </div>
             <p>
               On your turn, draw a card and read the situation out loud. Choose
               another player who must respond with either a "Sorry" or "Not
@@ -1407,15 +1441,17 @@
         </div>
 
         <div class="rule-item">
-          <div class="rule-card">
-            <img
-              src="images/card_+2.png"
-              alt="Draw Extra Two (+2) card example"
-              class="amber"
-            />
-          </div>
           <div class="rule-content">
             <h3>Draw Extra Two (+2)</h3>
+            <div class="rule-card-container">
+              <div class="rule-card">
+                <img
+                  src="images/card_+2.png"
+                  alt="Draw Extra Two (+2) card example"
+                  class="amber"
+                />
+              </div>
+            </div>
             <p>
               If other players vote that your response was genuine and fitting,
               you keep the card as a point. If not, the card goes to the discard
@@ -1425,14 +1461,16 @@
         </div>
 
         <div class="rule-item">
-          <div class="rule-card">
-            <img
-              src="images/card_+4.png"
-              alt="Draw Extra Four (+4) card example"
-            />
-          </div>
           <div class="rule-content">
             <h3>Draw Extra Four (+4)</h3>
+            <div class="rule-card-container">
+              <div class="rule-card">
+                <img
+                  src="images/card_+4.png"
+                  alt="Draw Extra Four (+4) card example"
+                />
+              </div>
+            </div>
             <p>
               The first player to collect 5 cards wins! They are crowned the
               Sorry Not Sorry champion of brutal honesty.
@@ -1441,11 +1479,13 @@
         </div>
 
         <div class="rule-item">
-          <div class="rule-card">
-            <img src="images/card_Thief.png" alt="Thief card example" />
-          </div>
           <div class="rule-content">
             <h3>Thief</h3>
+            <div class="rule-card-container">
+              <div class="rule-card">
+                <img src="images/card_Thief.png" alt="Thief card example" />
+              </div>
+            </div>
             <p>
               If other players vote that your response was genuine and fitting,
               you keep the card as a point. If not, the card goes to the discard
@@ -1455,15 +1495,17 @@
         </div>
 
         <div class="rule-item">
-          <div class="rule-card">
-            <img
-              src="images/card_7.png"
-              alt="Number 7 card example"
-              class="amber"
-            />
-          </div>
           <div class="rule-content">
             <h3>Number 7</h3>
+            <div class="rule-card-container">
+              <div class="rule-card">
+                <img
+                  src="images/card_7.png"
+                  alt="Number 7 card example"
+                  class="amber"
+                />
+              </div>
+            </div>
             <p>
               The first player to collect 5 cards wins! They are crowned the
               Sorry Not Sorry champion of brutal honesty.
