@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>SorryNotSorry - Fun & fast paced card game</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -1391,15 +1391,92 @@
       <div class="sorrynotsorry"></div>
       <img src="images/bg-after.svg" alt="" class="bg-after" />
     </div>
-    <section class="deck-preview">
-      <h2>The Deck</h2>
-      <h3>Number Cards</h3>
-      <div class="cards-row"></div>
-      <h3>Action Cards</h3>
-      <div class="cards-row action-cards-row"></div>
-    </section>
     <section id="rules" class="content-section">
       <h2>Rules</h2>
+
+      <h3>Setup of the game</h3>
+      <ul>
+        <li>
+          Perfect for 2 to 10 players, but if you've got more friends than that,
+          you might need to start a waiting list or consider if they're really
+          all your friends.
+        </li>
+        <li>
+          Age recommendation: 7 and up, because anyone younger might try to eat
+          the cards.
+        </li>
+        <li>
+          Each player gets dealt seven cards, placed in their hands face down
+          (so you can't peek)
+        </li>
+        <li>The rest of the deck? That's your Pick Pile placed face down.</li>
+        <li>Next to Pick Pile, designate a space for the Gameplay Pile.</li>
+        <li>
+          Flip over the top card from the Pick Pile and place the first card to
+          the Gameplay Pile face up to kick things off. Make sure that the first
+          card is not an action card. If it is an action card, place it in the
+          middle of the Pick Pile and repeat the process until you find a non
+          action card.
+        </li>
+        <li>
+          And voila! You're now ready to unleash the chaos of SorryNotSorry game
+          playing. Let the fun begin!
+        </li>
+      </ul>
+
+      <h3>Goal of the game</h3>
+      <p>Be the first player without cards.</p>
+
+      <h3>Core Game Play rules</h3>
+      <p>
+        The first player is normally the player to the left of the dealer or
+        previous game winner. Gameplay starts in a clockwise direction. Player
+        who has the turn tries to match the card in the Gameplay Pile except in
+        cases when the player does cut in move (see special game rules).
+      </p>
+
+      <h3>Matching the card</h3>
+      <p>
+        Players have to match card either by number, color or action. For
+        example if the top Gameplay Pile card:
+      </p>
+      <ul>
+        <li>
+          is a violet with number 4, then other players have to place either any
+          violet card or any card with number 4.
+        </li>
+        <li>
+          is a turquoise U-turn, then other players have to place either any
+          turquoise card or any color U-turn card.
+        </li>
+      </ul>
+
+      <p>Exceptions to this rule</p>
+      <ul>
+        <li>Colour Change Silent/Talk Mode</li>
+        <li>Color Change Extra 4 Cards</li>
+        <li>Thief Card</li>
+      </ul>
+      <p>
+        If the player has no matches or chooses not to play any of their cards
+        even though they might have a match, they must draw one card from the
+        Pick pile. If that card can be played you are free to play it or
+        otherwise you can keep it to yourself and the game moves on to the next
+        person in turn.
+      </p>
+      <p>
+        At any time during the game, if the Pick Pile becomes depleted and no
+        one has yet won the round, take the Gameplay Pile, place the top card in
+        the center then shuffle the rest of the cards and place them face down.
+        This is your new Pick Pile.
+      </p>
+
+      <h3>Action cards</h3>
+
+      <p>
+        Besides the number cards, there are action cards to spice the game up.
+      </p>
+
       <div class="rules-container">
         <div class="rule-item">
           <div class="rule-content">
@@ -1413,10 +1490,19 @@
                 />
               </div>
             </div>
-            <p>
-              Shuffle the deck and deal 7 cards to each player. Place the
-              remaining cards face down as the draw pile.
-            </p>
+            <div>
+              <p>
+                Reverses the direction of play (clockwise to counterclockwise or
+                vice versa).
+              </p>
+              <ul>
+                <li>
+                  Can be played on a card of the same color or another U-Turn
+                  card.
+                </li>
+                <li>Total: 8 cards (2 per color).</li>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -1432,49 +1518,121 @@
                 />
               </div>
             </div>
-            <p>
-              On your turn, draw a card and read the situation out loud. Choose
-              another player who must respond with either a "Sorry" or "Not
-              Sorry" answer.
-            </p>
+            <div>
+              <p>Skips the next player's turn.</p>
+              <ul>
+                <li>
+                  Can be played on a card of the same color or another Sleep
+                  card.
+                </li>
+                <li>Total: 8 cards (2 per color) in the deck.</li>
+              </ul>
+            </div>
           </div>
         </div>
 
         <div class="rule-item">
           <div class="rule-content">
-            <h3>Draw Extra Two (+2)</h3>
+            <h3>Pick Two (+2)</h3>
             <div class="rule-card-container">
               <div class="rule-card">
                 <img
                   src="images/card_+2.png"
-                  alt="Draw Extra Two (+2) card example"
+                  alt="Pick Two (+2) card example"
                   class="amber"
                 />
               </div>
             </div>
-            <p>
-              If other players vote that your response was genuine and fitting,
-              you keep the card as a point. If not, the card goes to the discard
-              pile.
-            </p>
+            <div>
+              <p>The next player draws two cards and skips their turn.</p>
+              <ul>
+                <li>
+                  Can be played on a card of the same color or another Pick Two
+                  card.
+                </li>
+                <li>Total: 8 cards (2 per color) in the deck.</li>
+              </ul>
+            </div>
           </div>
         </div>
 
         <div class="rule-item">
           <div class="rule-content">
-            <h3>Draw Extra Four (+4)</h3>
+            <h3>Change Color Pick Four (+4)</h3>
             <div class="rule-card-container">
               <div class="rule-card">
                 <img
                   src="images/card_+4.png"
-                  alt="Draw Extra Four (+4) card example"
+                  alt="Color Change Pick Four (+4) card example"
                 />
               </div>
             </div>
-            <p>
-              The first player to collect 5 cards wins! They are crowned the
-              Sorry Not Sorry champion of brutal honesty.
-            </p>
+            <div>
+              <p>
+                Lets the player choose the color for the next turn. The next
+                player must draw 4 cards and skip their turn unless they play a
+                Color Change Draw Four card and pass it on to the next player
+                which now has to pick 8 cards and so on.
+              </p>
+              <ul>
+                <li>Can be played on any card.</li>
+                <li>Total: 4 cards in the deck.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <div class="rule-content">
+            <h3>Change Color Silent Mode</h3>
+            <div class="rule-card-container">
+              <div class="rule-card">
+                <img
+                  src="images/card_ColorChangeSilence.png"
+                  alt="Color Change Silent Mode card example"
+                />
+              </div>
+            </div>
+            <div>
+              <p>
+                Lets the player choose the color for the next turn and starts
+                Silent Mode.
+              </p>
+              <ul>
+                <li>
+                  In Silent Mode, players can only make sounds or laugh; anyone
+                  who speaks must draw 2 penalty cards.
+                </li>
+                <li>Can be played on any card.</li>
+                <li>Identified by a zipped mouth.</li>
+                <li>Total: 2 cards in the deck.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="rule-item">
+          <div class="rule-content">
+            <h3>Change Color Talk Mode</h3>
+            <div class="rule-card-container">
+              <div class="rule-card">
+                <img
+                  src="images/card_ColorChangeTalk.png"
+                  alt="Color Change Talk Mode card example"
+                />
+              </div>
+            </div>
+            <div>
+              <p>
+                Lets the player choose the color for the next turn and cancels
+                Silent Mode (if active).
+              </p>
+              <ul>
+                <li>Can be played on any card.</li>
+                <li>Identified by an open mouth.</li>
+                <li>Total: 2 cards in the deck.</li>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -1486,11 +1644,16 @@
                 <img src="images/card_Thief.png" alt="Thief card example" />
               </div>
             </div>
-            <p>
-              If other players vote that your response was genuine and fitting,
-              you keep the card as a point. If not, the card goes to the discard
-              pile.
-            </p>
+            <div>
+              <p>Allows the player to swap hands with any other player.</p>
+              <ul>
+                <li>
+                  This card has no specific color, number, or action, so the
+                  previous card determines the next action.
+                </li>
+                <li>Total: 2 cards in the deck.</li>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -1506,179 +1669,190 @@
                 />
               </div>
             </div>
-            <p>
-              The first player to collect 5 cards wins! They are crowned the
-              Sorry Not Sorry champion of brutal honesty.
-            </p>
+            <div>
+              <p>
+                While not technically an action card, it triggers a reaction:
+              </p>
+              <ul>
+                <li>
+                  All players must place their hands in the center. The last
+                  player to do so draws 2 cards as a penalty.
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
 
-      <p>
-        <strong>Setup:</strong> The game is for 2-10 players, ages 7 and over.
-        Every player starts with seven cards, and they are dealt face down. The
-        rest of the cards are placed in a Draw Pile face down. Next to the pile
-        a space should be designated for a Discard Pile. The top card should be
-        placed in the Discard Pile, and the game begins!
-      </p>
+      <h3>Special game play rules to make game even more fun</h3>
 
-      <p><strong>Card deck is composed of these cards:</strong></p>
+      <div>
+        <strong>Yell Sorry / Not Sorry - </strong>
+        The moment a player has just one card left in their hands they must yell
+        “Sorry”. If they are caught not saying “Sorry” by another player before
+        the next player has taken their turn, that player must draw two new
+        cards as a penalty. Assuming that the player is unable to play/discard
+        their last card and needs to draw, but after drawing, is then able to
+        play/discard that card, the player has to repeat the action of calling
+        out “SORRY”. The bottom line is – Announcing “SORRY” needs to be
+        repeated every time you are left with one card. If any player says “NOT
+        SORRY” before the player who has one card left trying to counter them
+        then the player with one card has to draw two cards as a penalty.
+        Generally there can be three cases when it comes to two players saying
+        “SORRY/NOT SORRY”:
+        <ul>
+          <li>
+            When a player who has one card left is clearly the first to yell
+            “SORRY”. Then the player who tried to counter has to draw two cards
+            as a penalty.
+          </li>
+          <li>
+            When both players start yelling “SORRY/NOT SORRY” almost at the same
+            time (or when it is hard to tell who was the first), then both
+            players take one card each as a penalty
+          </li>
+          <li>
+            When a player who has one card left is clearly not first to say
+            “Sorry”, then the player who has one card left draws two cards as a
+            penalty.
+          </li>
+        </ul>
+        If more than two players try to say “SORRY/NOT SORRY” the same rules
+        apply to all two players.
+      </div>
+      <div>
+        <strong>Stacking cards - </strong>
+        <p>
+          during your turn you can stack multiple cards as long as they are the
+          same number. For example if you have two cards with number 8 (one
+          rouge and one violet) you can play both cards at once, but make sure
+          you match the card on top of the Gameplay Pile. Players can stack
+          action cards as well. Stacking Change Color Pick Four or Pick Two
+          cards mean that the next player must draw the total sum of all stacked
+          cards. For example, playing three stacked Pick Two cards means that
+          the next player must draw 6 cards in total unless they play “Pick two”
+          card themselves which means that the next player must draw 8 cards and
+          so on. Stacking U-turn cards basically means if the total amount of
+          reverse cards is odd then direction is reversed otherwise the playing
+          direction is the same.
+        </p>
+        <p>
+          There is one card that players can not stack - it's the Thief card.
+          Players can only play one swap hands card at a time so don't collect
+          them because it works against players advantage.
+        </p>
+      </div>
+      <div>
+        <strong>Cutting in - </strong>
+        <p>
+          cutting in means that a player can play without his/her turn. The
+          condition to cut in is to have exactly the same card (matching
+          number/action and matching color). Player has to be quicker to cut in
+          before the player whose turn it normally is. If the player who is
+          cutting in is late and places the card after the player whose turn it
+          was to play next then the player who tried to cut it draws two cards
+          as a penalty. If cut in is successful then the game continues from the
+          player who did cut in. Players also can cut in with special cards.
+        </p>
+      </div>
+      <div>
+        <strong>Finishing a game without saying “Sorry” - </strong>
+        <p>
+          there is a case when a player can finish the game without yelling
+          “Sorry” - by placing
+          <strong>two exactly the same number and same color cards</strong>
+          (pay attention it's only number and not action).
+        </p>
+      </div>
+      <div>
+        <strong>Silent mode - </strong>
+        <p>
+          when “Change Color Silent Mode” card is played it means that everyone
+          in the game can not talk. Players can make sounds and laugh, but they
+          can not say any word with the only exception being the word “Sorry/Not
+          Sorry” when having one card left on your hands or when trying to
+          counter another player. Silent mode is canceled once the “Change Color
+          Talk Mode” card is played. During silent mode when any of “Change
+          Color” cards is played, players point to the color on the card they
+          want the next card to be.
+        </p>
+      </div>
+      <div>
+        <strong>Naming color when playing “Change Color” cards</strong>
+        <p>
+          when playing any of “Change Color” cards players must choose which
+          color should the next card be. They <strong>MUST</strong> use one of
+          these color names: rouge, amber, turquoise or violet. If the player
+          says for example “red” instead of rouge then the player picks two
+          cards as a penalty.
+        </p>
+      </div>
+      <div>
+        <strong>Winning the game</strong>
+        <ul>
+          <li>
+            The last card can not be an action card, it must be a number card.
+          </li>
+          <li>
+            Players can not stack last cards unless they are number cards and
+            have exactly <strong>the same color and the same number</strong>.
+          </li>
+          <li>
+            If the last card is the number which requires all players to place a
+            hand in the middle then all players must do it and the last one
+            takes two cards as a penalty which means that the player who was
+            playing last card might get a penalty and then the game continues.
+          </li>
+        </ul>
+      </div>
 
-      <p><strong>Regular cards:</strong></p>
-      <p>
-        All regular cards have a number from 0 to 10 (excluding 9, because it
-        can be easily confused with 6) and also a background color which can be
-        one of four colors: amber, violet, turquoise, rouge.
-      </p>
-      <ul>
-        <li>
-          There are 8 cards of each number (two for each color) except 0 number
-          cards. There are only 4 cards with number 0 - one for each number.
-        </li>
-      </ul>
+      <h3>Extra spicy mods to the game to make it even more fun</h3>
+      <div>
+        <ul>
+          <li>
+            <strong>Rolling hand placing number - </strong> instead of number 7
+            requiring placing hands in the middle, increase the number by 1
+            every time hand placing has happened. For example, once you play the
+            number 7 card, the next card to place hands in the middle is number
+            8 card and so on (the next card after number 10 is number 0 card).
+          </li>
+          <li>
+            <strong>No mercy mode - </strong> if a player is not following the
+            game and makes a mistake they must pick two cards as a penalty. Some
+            examples of such cases:
+            <ul>
+              <li>does not play when it's their turn</li>
+              <li>
+                forgets what was the color requested for Change Colour card
+              </li>
+              <li>plays when it's not their turn</li>
+              <li>plays incorrect card</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-      <p>
-        <strong>Action Cards:</strong> Besides the number cards, there are
-        several other cards that help mix up the game. These are called Action
-        or Symbol cards.
-      </p>
-      <ul>
-        <li>
-          <strong>U-turn</strong> – If going clockwise, switch to
-          counterclockwise or vice versa. It can only be played on a card that
-          matches by color, or on another Reverse card. If turned up at the
-          beginning of play, the dealer goes first, and the player to the
-          dealer’s right is next (normally it would be the player to the
-          dealer’s left). There are in total 4 reverse cards, one for each
-          color.
-        </li>
-        <li>
-          <strong>Sleep</strong> – When a player places this card, the next
-          player has to skip their turn. It can only be played on a card that
-          matches by color, or on another Skip card. If turned up at the
-          beginning of play, the first player (to the dealer’s left) loses
-          his/her turn. The next player to that player’s right starts the game
-          instead. There are in total 4 skip cards, one for each color.
-        </li>
-        <li>
-          <strong>Draw Two</strong> – When a person places this card, the next
-          player will have to pick up two cards and forfeit his/her turn. It can
-          only be played on a card that matches by color, or on another Draw
-          Two. If turned up at the beginning of play, the first player draws two
-          cards and gets skipped. There are in total 8 skip cards, two for each
-          color.
-        </li>
-        <li>
-          <strong>Color change</strong> – This card represents all four colors,
-          and can be placed on any card. The player has to state which color it
-          will represent for the next player. It can be played regardless of
-          whether another card is available. If turned up at the beginning of
-          play, the first player chooses what color to continue play. This card
-          cancels silent mode and players can start talking again. There are in
-          total 2 Color change cards.
-        </li>
-        <li>
-          <strong>Color change shhh mode</strong> – This card represents all
-          four colors, and can be placed on any card. The player has to state
-          which color it will represent for the next player. It can be played
-          regardless of whether another card is available. If turned up at the
-          beginning of play, the first player chooses what color to continue
-          play. This card also means that players can not talk anymore and if
-          anyone says any work they take two cards as a penalty. There are in
-          total 2 Color change shhh cards.
-        </li>
-        <li>
-          <strong>Color change Draw Four</strong> – This acts just like the
-          Color change card except that the next player also has to draw four
-          cards as well as forfeit his/her turn. With this card, you must have
-          no other alternative cards to play that matches the color of the card
-          previously played. If you play this card illegally, you may be
-          challenged by the other player to show your hand to him/her. If
-          guilty, you need to draw 4 cards. If not, the challenger needs to draw
-          6 cards instead. If turned up at the beginning of play, return this
-          card to the Draw pile, shuffle, and turn up a new one. There are 4
-          Color change draw four cards in total.
-        </li>
-        <li>
-          <strong>Thief</strong> - There are 2 thief cards in the deck. Player
-          who plays it can swap his/her hands with any player of his/her choice.
-          This card does not have a color therefore the previous card decides
-          the color.
-        </li>
-        <li>
-          <strong>Challenge player of your choice</strong> - Player who plays
-          this card has to challenge any player of his/her choice. The challenge
-          is simple, you both count to three and on number three with your
-          finger you show either one or two fingers. If both of you show the
-          same amount of fingers then the challenged player draws two cards
-          otherwise the challenger draws two cards.
-        </li>
-        <li>
-          <strong>Number card 7</strong> - once this card is played all players
-          have to put their hand in the middle and the player who is the last
-          one draws two cards as a penalty.
-        </li>
-      </ul>
-
-      <p>
-        <strong>Game Play:</strong> The first player is normally the player to
-        the left of the dealer (you can also choose the youngest player) and
-        gameplay usually follows a clockwise direction. Every player views
-        his/her cards and tries to match the card in the Discard Pile.
-      </p>
-      <p>
-        You have to match either by the number, color, or the symbol/Action. For
-        instance, if the Discard Pile has a red card that is an 8 you have to
-        place either a red card or a card with an 8 on it. You can also play a
-        Color change card (which can alter current color in play).
-      </p>
-      <p>
-        If the player has no matches or they choose not to play any of their
-        cards even though they might have a match, they must draw a card from
-        the Draw pile. If that card can be played, play it. Otherwise, keep the
-        card, and the game moves on to the next person in turn. You can also
-        play a Color change card, or a Color change Draw Four card on your turn.
-      </p>
-      <p>
-        If a player before you plays “Color change draw four” or “draw two card”
-        the next player either draws four or two cards respectively OR the
-        player can pass it to the next player by playing draw four or draw two
-        cards respectively.
-      </p>
-      <p>
-        If the very first card is an action card then put it back to the middle
-        of the draw pile and take another card on the top until it’s not an
-        action card anymore.
-      </p>
-      <p>
-        At any time during the game, if the Draw Pile becomes depleted and no
-        one has yet won the round, take the Discard Pile, shuffle it, and turn
-        it over to regenerate a new Draw Pile.
-      </p>
-
-      <!-- ... (Rest of the content continues similarly) ... -->
-
-      <p>
-        Generally making any type of mistake during game play means that player
-        who made a mistake must draw two cards as a penalty.
-      </p>
-
-      <p><strong>Other special game play rules:</strong></p>
-      <ul>
-        <li><strong>Stacking cards:</strong> (Description as above)</li>
-        <!-- ... -->
-      </ul>
-
-      <!-- Continue with the rest of the rules, scoring, and two/four player rules in the same format -->
+    <section class="deck-preview">
+      <h2>The Deck</h2>
+      <h3>Number Cards</h3>
+      <div class="cards-row"></div>
+      <h3>Action Cards</h3>
+      <div class="cards-row action-cards-row"></div>
     </section>
 
     <section id="about" class="content-section">
       <h2>About</h2>
       <div class="section-content">
         <p>
-          Sorry Not Sorry is a playful card game where players navigate through
-          awkward social situations with a mix of honesty and humor. Created for
-          those who love to laugh at life's uncomfortable moments!
+          "Sorry Not Sorry" is a fast-paced, energetic, and hilariously chaotic
+          card game that thrives on playful twists, unexpected turns, and
+          ruining your friendships. With mischievous characters, vibrant
+          designs, and clever action cards like "Skip," "Pick Four," and "Thief"
+          every round keeps players on their toes. Whether you're sabotaging
+          friends or trying to dodge their schemes, this game guarantees endless
+          fun and laughter. Perfect for parties, game nights, or anytime you
+          want to unleash your competitive (and cheeky) side!
         </p>
 
         <div class="feature-grid">
@@ -1690,17 +1864,19 @@
             </p>
           </div>
           <div class="feature">
-            <h3>🤝 Social Bonds</h3>
-            <p>
-              Strengthen relationships through shared experiences and honest
-              conversations.
-            </p>
-          </div>
-          <div class="feature">
             <h3>🎲 Easy to Play</h3>
             <p>
               Simple rules, endless possibilities. Perfect for 3-8 players, ages
-              16+.
+              7+.
+            </p>
+          </div>
+          <div class="feature">
+            <h3>🤝 Fun & Flexible Mods for Extra Chaos</h3>
+            <p>
+              Amp up the excitement with optional mods like Rolling Hand Placing
+              Number or No Mercy Mode, where every mistake comes with hilarious
+              consequences. Perfect for those seeking endless twists and
+              increased challenges!
             </p>
           </div>
         </div>
@@ -1716,26 +1892,119 @@
         </div>
 
         <div class="faq-item">
-          <h3>How long does a game take?</h3>
+          <h3>What is the age range for "Sorry Not Sorry"?</h3>
           <p>
-            A typical game lasts 30-45 minutes, but you can play as long as
-            you're having fun!
+            The game is recommended for ages 7 and up, ensuring fun for kids and
+            adults alike. Younger kids might find the rules tricky (or try to
+            eat the cards).
           </p>
         </div>
 
         <div class="faq-item">
-          <h3>Is this game family-friendly?</h3>
+          <h3>What happens if the Pick Pile runs out of cards?</h3>
           <p>
-            The game is recommended for ages 16+ due to some mature themes and
-            situations.
+            Simply shuffle the Gameplay Pile (except for the top card), and it
+            becomes your new Pick Pile. The chaos continues uninterrupted!
           </p>
         </div>
 
         <div class="faq-item">
-          <h3>Can I add my own cards?</h3>
+          <h3>Can action cards be used as the final card to win?</h3>
           <p>
-            Absolutely! Creating your own cards adds a personal touch to the
-            game.
+            No, the last card must be a number card. Action cards can not be
+            used to end the game.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What is the "Cutting In" action, and how does it work?</h3>
+          <p>
+            "Cutting In" allows a player to play out of turn if they have
+            exactly the same card (matching number, color, and action) as the
+            one currently on the Gameplay Pile. To successfully cut in, you must
+            place your card before the next player takes their turn. If you're
+            late or incorrect, you draw two cards as a penalty. A successful cut
+            shifts the turn order to the cutting player, adding an exciting,
+            unpredictable twist!
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What makes this game different from other card games?</h3>
+          <p>
+            Unique mechanics like Silent Mode, Cutting In, and the hilarious
+            Sorry/Not Sorry rule create a fast-paced, unpredictable, and
+            laugh-filled experience.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can players stack action cards?</h3>
+          <p>
+            Yes! Stacking is allowed for matching action cards (like Pick Two or
+            U-turn), increasing their effect. The exception is the Thief card,
+            which must be played individually.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What happens in Silent Mode?</h3>
+          <p>
+            Players can’t talk but can laugh or make noises. Anyone caught
+            speaking a word (other than "Sorry/Not Sorry") must draw two cards
+            as a penalty.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can we modify the rules?</h3>
+          <p>
+            Absolutely! The game includes fun extra mods, like Rolling Hand
+            Placing Number or No Mercy Mode, but feel free to invent your own
+            twists.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>How long does a typical game last?</h3>
+          <p>
+            Depending on the number of players, a game can last 10-20 minutes,
+            making it perfect for quick matches or longer gaming sessions.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Is "Sorry Not Sorry" suitable for family game nights?</h3>
+          <p>
+            Definitely! Its mix of strategy, humor, and fast-paced action makes
+            it a hit for families, friends, or parties.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What if someone forgets to yell "Sorry" or "Not Sorry"?</h3>
+          <p>
+            The player faces penalties like drawing two extra cards, so be quick
+            and sharp!
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>
+            How do we decide which color to play after a "Change Color" card?
+          </h3>
+          <p>
+            The player who plays the card must announce the new color (using
+            names like rouge, amber, turquoise, or violet). Misnaming the color
+            results in a penalty.
+          </p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can I play without action cards?</h3>
+          <p>
+            Yes! You can customize your deck to exclude or include specific
+            cards based on the group's preference.
           </p>
         </div>
       </div>
