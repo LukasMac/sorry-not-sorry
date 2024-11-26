@@ -108,21 +108,21 @@
 
       .sorrynotsorry {
         position: absolute;
-        background-image: url("images/sorry-not-sorry.svg");
+        background-image: url("images/SorryNotSorry.png");
         background-position: center;
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: contain;
         top: 0;
         left: 0;
-        height: 100%;
-        width: 100%;
+        height: 50%;
+        width: 50%;
         animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
         position: fixed;
         --move-x: 0%;
         --move-y: 0%;
         left: calc(50% + var(--move-x));
-        top: calc(50% + var(--move-y));
+        top: calc(60% + var(--move-y));
         transform: translate(-50%, -50%) scale(1);
         z-index: 100;
       }
@@ -257,7 +257,7 @@
 
       .nav-content {
         height: 100%;
-        padding: 0 24px;
+        padding-inline: 4px 16px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -268,11 +268,19 @@
         font-size: 1.25rem;
         font-weight: 700;
         letter-spacing: -0.5px;
+        display: flex;
+        align-items: center;
+        max-width: 68px;
+      }
+
+      .nav-logo img {
+        width: 100%;
+        height: 100%;
       }
 
       .nav-links {
         display: flex;
-        gap: 24px;
+        gap: 16px;
       }
 
       .nav-link {
@@ -491,7 +499,7 @@
           transform: rotate(40deg) translate3d(48%, 150%, 0);
         }
         to {
-          transform: rotate(40deg) translate3d(48%, 62%, 0);
+          transform: rotate(40deg) translate3d(48%, 42%, 0);
         }
       }
       .bottom-center-left {
@@ -499,7 +507,7 @@
           cubic-bezier(0.175, 0.885, 0.32, 1.275);
         animation-delay: 1s;
         animation-fill-mode: backwards;
-        transform: rotate(40deg) translate3d(48%, 62%, 0);
+        transform: rotate(40deg) translate3d(48%, 42%, 0);
 
         svg {
           transform: perspective(var(--perspective)) rotate3d(1, 0, 0, 16deg);
@@ -511,7 +519,7 @@
           transform: rotate(0deg) translate3d(0, 150%, 0);
         }
         to {
-          transform: rotate(0deg) translate3d(0, 62%, 0);
+          transform: rotate(0deg) translate3d(0, 42%, 0);
         }
       }
       .bottom-center {
@@ -519,7 +527,7 @@
           cubic-bezier(0.175, 0.885, 0.32, 1.275);
         animation-delay: 1.6s;
         animation-fill-mode: backwards;
-        transform: rotate(0deg) translate3d(0, 62%, 0);
+        transform: rotate(0deg) translate3d(0, 42%, 0);
 
         svg {
           transform: perspective(var(--perspective)) rotate3d(1, 0, 0, 16deg);
@@ -531,7 +539,7 @@
           transform: rotate(-8deg) translate3d(-48%, 150%, 0);
         }
         to {
-          transform: rotate(-8deg) translate3d(-48%, 62%, 0);
+          transform: rotate(-8deg) translate3d(-48%, 42%, 0);
         }
       }
       .bottom-center-right {
@@ -539,7 +547,7 @@
           cubic-bezier(0.175, 0.885, 0.32, 1.275);
         animation-delay: 1.1s;
         animation-fill-mode: backwards;
-        transform: rotate(-8deg) translate3d(-48%, 62%, 0);
+        transform: rotate(-8deg) translate3d(-48%, 42%, 0);
 
         svg {
           transform: perspective(var(--perspective)) rotate3d(1, 0, 0, 16deg);
@@ -1054,7 +1062,9 @@
     <nav class="progress-nav">
       <div class="progress-bar"></div>
       <div class="nav-content">
-        <span class="nav-logo"></span>
+        <span class="nav-logo">
+          <img src="images/SorryNotSorry.png" alt="SorryNotSorry" />
+        </span>
         <div class="nav-links">
           <a href="#rules" class="nav-link">Rules</a>
           <a href="#about" class="nav-link">About</a>
@@ -2141,31 +2151,20 @@
         const viewportHeight = window.innerHeight / 2;
         const scrollProgress = Math.min(window.scrollY / viewportHeight, 1);
 
-        // Calculate distance to move
-        // From: center (50%, 50%) to target (24px, 24px)
-        const targetX = 44 - window.innerWidth / 2;
-        const targetY = 24 - window.innerHeight / 2;
-        const targetWidth = 184;
-        const targetHeight = 165;
+        // Calculate scale and opacity based on scroll progress
+        const scale = 1 - scrollProgress; // Scale from 1 to 0
+        const opacity = 1 - scrollProgress; // Fade from 1 to 0
 
-        // Get initial dimensions
-        const initialWidth = window.innerWidth;
-        const initialHeight = window.innerHeight;
+        // Apply transformations
+        sorryElement.style.transform = `translate(-50%, -50%) scale(${scale})`;
+        sorryElement.style.opacity = opacity;
 
-        // Calculate size difference
-        const widthDiff = initialWidth - targetWidth;
-        const heightDiff = initialHeight - targetHeight;
-
-        // Apply movement and scaling based on scroll progress
-        const moveX = targetX * scrollProgress;
-        const moveY = targetY * scrollProgress;
-        const currentWidth = initialWidth - widthDiff * scrollProgress;
-        const currentHeight = initialHeight - heightDiff * scrollProgress;
-
-        sorryElement.style.setProperty("--move-x", `${moveX}px`);
-        sorryElement.style.setProperty("--move-y", `${moveY}px`);
-        sorryElement.style.width = `${currentWidth}px`;
-        sorryElement.style.height = `${currentHeight}px`;
+        // Hide element completely when fully faded
+        if (opacity <= 0) {
+          sorryElement.style.visibility = "hidden";
+        } else {
+          sorryElement.style.visibility = "visible";
+        }
       });
 
       window.addEventListener("scroll", () => {
