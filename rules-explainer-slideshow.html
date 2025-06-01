@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amigo Ambush Rules</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-10px) rotate(5deg);
+        }
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        background-color: #f5f5f5;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            45deg,
+            rgba(255, 0, 0, 0.05) 25%,
+            transparent 25%
+          ),
+          linear-gradient(-45deg, rgba(0, 0, 255, 0.05) 25%, transparent 25%),
+          linear-gradient(45deg, transparent 75%, rgba(0, 255, 0, 0.05) 75%),
+          linear-gradient(-45deg, transparent 75%, rgba(255, 255, 0, 0.05) 75%);
+        background-size: 100px 100px;
+        background-position: 0 0, 0 50px, 50px -50px, -50px 0px;
+        z-index: -1;
+      }
+
+      .floating-card {
+        position: fixed;
+        font-size: 24px;
+        opacity: 0.1;
+        animation: float 6s ease-in-out infinite;
+        z-index: -1;
+      }
+
+      .floating-card:nth-child(1) {
+        top: 10%;
+        left: 10%;
+        animation-delay: 0s;
+      }
+      .floating-card:nth-child(2) {
+        top: 20%;
+        right: 15%;
+        animation-delay: 1s;
+      }
+      .floating-card:nth-child(3) {
+        bottom: 15%;
+        left: 20%;
+        animation-delay: 2s;
+      }
+      .floating-card:nth-child(4) {
+        bottom: 25%;
+        right: 10%;
+        animation-delay: 3s;
+      }
+      .floating-card:nth-child(5) {
+        top: 50%;
+        left: 5%;
+        animation-delay: 4s;
+      }
+      .floating-card:nth-child(6) {
+        top: 30%;
+        right: 5%;
+        animation-delay: 5s;
+      }
+
+      .slideshow-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+
+      .slideshow-container {
+        width: 100%;
+        height: 80vh;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        display: flex;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 20px;
+      }
+
+      .nav-arrow {
+        position: absolute;
+        bottom: 10%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 10;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-arrow:hover {
+        background: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .nav-arrow.left {
+        left: 10px;
+      }
+
+      .nav-arrow.right {
+        right: 10px;
+      }
+
+      .slideshow-wrapper:hover .nav-arrow {
+        opacity: 1;
+      }
+
+      .nav-arrow::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-top: 2px solid #333;
+        border-right: 2px solid #333;
+        display: block;
+      }
+
+      .nav-arrow.left::before {
+        transform: rotate(-135deg);
+        margin-left: 4px;
+      }
+
+      .nav-arrow.right::before {
+        transform: rotate(45deg);
+        margin-right: 4px;
+      }
+
+      .slide {
+        flex: 0 0 100%;
+        scroll-snap-align: start;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 255, 255, 0.98) 100%
+          ),
+          repeating-linear-gradient(
+            45deg,
+            rgba(29, 185, 84, 0.03) 0px,
+            rgba(29, 185, 84, 0.03) 2px,
+            transparent 2px,
+            transparent 4px
+          ),
+          repeating-linear-gradient(
+            -45deg,
+            rgba(255, 0, 0, 0.03) 0px,
+            rgba(255, 0, 0, 0.03) 2px,
+            transparent 2px,
+            transparent 4px
+          );
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow-y: auto;
+        position: relative;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        scroll-margin-top: 0;
+      }
+
+      .slide::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 20% 20%,
+            rgba(29, 185, 84, 0.03) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(255, 0, 0, 0.03) 0%,
+            transparent 50%
+          );
+        pointer-events: none;
+      }
+
+      .slide h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        color: #333;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .slide h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          rgba(29, 185, 84, 0.5),
+          rgba(255, 0, 0, 0.5)
+        );
+        border-radius: 3px;
+      }
+
+      .slide p {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #444;
+        margin-bottom: 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .slide ul {
+        text-align: left;
+        margin: 20px 0;
+        padding-left: 20px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .slide li {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #444;
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 5px;
+      }
+
+      .slide li::before {
+        content: "•";
+        color: #1db954;
+        font-weight: bold;
+        position: absolute;
+        left: -15px;
+      }
+
+      .progress-dots {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 20px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        font-size: 16px;
+        color: #666;
+        font-weight: 500;
+      }
+
+      .slide-counter {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .slide-counter .current {
+        color: #1db954;
+        font-weight: 600;
+      }
+
+      .slide-counter .total {
+        color: #666;
+      }
+
+      .slide-counter .separator {
+        color: #999;
+      }
+
+      /* Remove old dot styles */
+      .dot,
+      .dot.active {
+        display: none;
+      }
+
+      /* Hide scrollbar but keep functionality */
+      .slideshow-container::-webkit-scrollbar {
+        display: none;
+      }
+      .slideshow-container {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .stack-row {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .stack-on-top {
+        display: grid;
+        grid-template-columns: repeat(3, 40px);
+        gap: 10px;
+        margin-bottom: 10px;
+        position: relative;
+      }
+
+      .stack-on-top .card:first-child {
+        transform: rotate(-10deg);
+      }
+
+      .stack-on-top .card:last-child {
+        transform: rotate(10deg);
+      }
+
+      .cross-over-red-cross {
+        position: absolute;
+        width: 140%;
+        height: 100%;
+      }
+
+      .cross-over-red-cross::before,
+      .cross-over-red-cross::after {
+        content: '';
+        position: absolute;
+        background-color: red;
+        width: 100%;
+        height: 5px;
+        top: 50%;
+        left: 0;
+      }
+
+      .cross-over-red-cross::before {
+        transform: rotate(45deg);
+      }
+
+      .cross-over-red-cross::after {
+        transform: rotate(-45deg);
+      }
+
+      .card-placeholder {
+        height: 100px;
+        aspect-ratio: 1/1.4;
+        background-color: #f0f0f0;
+        font-size: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #999;
+        font-weight: bold;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+
+      .card {
+        height: 100px;
+        aspect-ratio: 1/1.4;
+        border-radius: 10%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .big {
+        height: 200px;
+      }
+
+      .card::before {
+        content: "";
+        background-size: contain;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+      }
+
+      .card::after {
+        content: "";
+        background-size: contain;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+      }
+
+      .amber::before {
+        background-image: url("images/amber.png");
+      }
+
+      .rouge::before {
+        background-image: url("images/rouge.png");
+      }
+
+      .turquoise {
+        background-image: url("images/turquoise.png");
+      }
+
+      .violet {
+        background-image: url("images/violet.png");
+      }
+
+      .nr-0::after {
+        background-image: url("images/card_0.png");
+      }
+      .nr-1::after {
+        background-image: url("images/card_1.png");
+      }
+      .nr-2::after {
+        background-image: url("images/card_2.png");
+      }
+      .nr-3::after {
+        background-image: url("images/card_3.png");
+      }
+      .nr-4::after {
+        background-image: url("images/card_4.png");
+      }
+      .nr-5::after {
+        background-image: url("images/card_5.png");
+      }
+      .nr-6::after {
+        background-image: url("images/card_6.png");
+      }
+      .nr-7::after {
+        background-image: url("images/card_7.png");
+      }
+      .nr-8::after {
+        background-image: url("images/card_8.png");
+      }
+      .nr-9::after {
+        background-image: url("images/card_9.png");
+      }
+      .nr-10::after {
+        background-image: url("images/card_10.png");
+      }
+
+      .action-card-u-turn::after {
+        background-image: url("images/card_U-turn.png");
+      }
+      .action-card-sleep::after {
+        background-image: url("images/card_Zzz.png");
+      }
+      .action-card-pick-two::after {
+        background-image: url("images/card_+2.png");
+      }
+      .action-card-change-color-talk::after {
+        background-image: url("images/card_ColorChangeTalk.png");
+      }
+      .action-card-change-color-silent::after {
+        background-image: url("images/card_ColorChangeSilence.png");
+      }
+      .action-card-pick-four::after {
+        background-image: url("images/card_+4.png");
+      }
+      .action-card-question-mark::after {
+        background-image: url("images/card_QuestionMark.png");
+      }
+      .action-card-thief::after {
+        background-image: url("images/card_Thief.png");
+      }
+    </style>
+  </head>
+  <body>
+    <div class="floating-card">♠</div>
+    <div class="floating-card">♥</div>
+    <div class="floating-card">♣</div>
+    <div class="floating-card">♦</div>
+    <div class="floating-card">🃏</div>
+    <div class="floating-card">🎴</div>
+    <div class="slideshow-wrapper">
+      <div class="slideshow-container">
+        <div id="welcome" class="slide">
+          <h2>Rules Explainer Slideshow</h2>
+          <p>
+            Use the left and right arrow keys or swipe to navigate through this slideshow explaining the rules of the game. Each slide will walk you through a different aspect of gameplay.
+          </p>
+          <p class="hint">
+            <span>←</span> Previous slide &nbsp;&nbsp;|&nbsp;&nbsp; Next slide <span>→</span>
+          </p>
+        </div>
+        <div id="welcome" class="slide">
+          <h1>Welcome to Amigo Ambush!</h1>
+          <p>
+            Get ready for a card game where friends turn into frenemies! Be the
+            first player to get rid of all your cards to win, but watch out for
+            sneaky surprises! Perfect for 2 to 8 players, ages 7 and up.
+          </p>
+        </div>
+        <div id="deck" class="slide">
+          <h2>The Deck: Regular & Action Cards</h2>
+          <p>
+            The deck includes regular number cards (0-10, in rouge, amber,
+            turquoise, violet). There are also special "Action" or "Symbol"
+            cards to mix up the game!
+          </p>
+          <p>
+            <h3>Number Cards</h3>
+            <div class="stack-row">
+              <div class="card rouge nr-0"></div>
+              <div class="card rouge nr-1"></div>
+              <div class="card-placeholder">...</div>
+              <div class="card rouge nr-10"></div>
+            </div>
+          </p>
+          <p>
+            <h3>Action Cards</h3>
+            <div class="stack-row">
+              <div class="card rouge action-card-u-turn"></div>
+              <div class="card rouge action-card-sleep"></div>
+              <div class="card rouge action-card-pick-two"></div>
+              <div class="card rouge action-card-change-color-talk"></div>
+            </div>
+            <div class="stack-row">
+              <div class="card rouge action-card-change-color-silent"></div>
+              <div class="card rouge action-card-pick-four"></div>
+              <div class="card rouge action-card-question-mark"></div>
+              <div class="card rouge action-card-thief"></div>
+            </div>
+          </p>
+        </div>
+        <div id="setup" class="slide">
+          <h2>Setting Up Your Game</h2>
+          <p>
+            Each player gets 7 cards face down. The rest go face down in the
+            "Pick Pile." Flip the top card from the Pick Pile to start the
+            "Gameplay Pile" face up.
+          </p>
+          <p>
+            If it's an action card, shuffle it back and pick another until you
+            get a number card!
+          </p>
+          <img src="images/rules/game-setup.jpeg" alt="Setup" width="100" />
+        </div>
+        <div id="matching" class="slide">
+          <h2>Your Turn: Match, Match, Match!</h2>
+          <p>
+            The game starts clockwise, usually with the player to the dealer's
+            left. On your turn, play a card that matches the top card of the
+            Gameplay Pile by number, color, or action.
+          </p>
+            <div class="stack-on-top">
+              <div class="card rouge nr-0"></div>
+              <div class="card rouge nr-5"></div>
+            </div>
+            <div class="stack-on-top">
+              <div class="card amber nr-1"></div>
+              <div class="card amber nr-1"></div>
+            </div>
+            <div class="stack-on-top">
+              <div class="card violet action-card-u-turn"></div>
+              <div class="card turquoise action-card-u-turn"></div>
+            </div>
+        </div>
+        <div id="drawing" class="slide">
+          <h2>Can't Play? Draw!</h2>
+          <p>
+            If you don't have a matching card, or choose not to play one, you
+            must draw one card from the Pick Pile. If that drawn card can be
+            played, you can play it immediately. Otherwise, keep it, and play
+            moves to the next person.
+          </p>
+        </div>
+        <div id="u-turn" class="slide">
+          <h2>Action Card: U-Turn (Reverse)</h2>
+          <p>
+            This card changes the direction of play (clockwise to
+            counter-clockwise, or vice versa). Play it on a matching color or
+            another U-turn card. There are 8 U-turn cards in the deck.
+          </p>
+          <p>
+            <div class="card big violet action-card-u-turn"></div>
+          </p>
+        </div>
+        <div id="sleep" class="slide">
+          <h2>Action Card: Sleep (Zzz)</h2>
+          <p>
+            Played this card? The next player skips their turn! Play it on a
+            matching color or another Sleep card. There are 8 Sleep cards.
+          </p>
+          <p>
+            <div class="card big amber action-card-sleep"></div>
+          </p>
+        </div>
+        <div id="pick-two" class="slide">
+          <h2>Action Card: Pick Two (Draw Two)</h2>
+          <p>
+            Uh oh! When you play this, the next player draws two cards AND
+            <b>loses their turn</b>. Play it on a matching color or another Pick
+            Two. There are 8 Pick Two cards.
+          </p>
+          <p>
+            <div class="card big amber action-card-pick-two"></div>
+          </p>
+        </div>
+        <div id="change-color-silent" class="slide">
+          <h2>Action Card: Change Color Silent Mode</h2>
+          <p>
+            Play this on ANY card and choose the next color. But beware:
+            everyone must stop talking! Only sounds and laughs are allowed. Say
+            a word, and you draw two penalty cards!
+          </p>
+          <p>
+            <div class="card big amber action-card-change-color-silent"></div>
+          </p>
+        </div>
+        <div id="change-color-talk" class="slide">
+          <h2>Action Card: Change Color (Talk Mode)</h2>
+          <p>
+            Play this on ANY card. You get to choose the next color (rouge,
+            amber, turquoise, or violet). If "Silent Mode" is active, this card
+            cancels it so everyone can talk again!
+          </p>
+          <p>
+            <div class="card big amber action-card-change-color-talk"></div>
+          </p>
+        </div>
+        <div id="pick-four" class="slide">
+          <h2>Action Card: Change Color Pick Four (Draw Four)</h2>
+          <p>
+            The ultimate ambush! Play this on ANY card. The next player draws
+            four cards AND loses their turn! You must only play this if you have
+            no other matching color card in your hand.
+          </p>
+          <p>
+            <div class="card big violet action-card-change-color-talk"></div>
+          </p>
+        </div>
+        <div id="challenge" class="slide">
+          <h2>Challenging a Change Color Pick Four</h2>
+          <p>
+            Think someone played a Change Color Pick Four illegally (when they
+            had another playable card)? Challenge them! If they're guilty, they
+            draw 4 cards. If they're innocent, you draw 6 cards!
+          </p>
+          <p>
+            <div class="card big violet action-card-pick-four"></div>
+          </p>
+        </div>
+        <div id="thief" class="slide">
+          <h2>Action Card: Thief (Swap Hands)</h2>
+          <p>
+            Feeling sneaky? Play this card to swap your entire hand with any
+            player you choose! This card has no color, number, or action, so the
+            previous card determines the color for the next play.
+          </p>
+          <p>
+            <div class="card big violet action-card-thief"></div>
+          </p>
+        </div>
+        <div id="number-seven" class="slide">
+          <h2>Special Card: Number 7 (Hand Placing)</h2>
+          <p>
+            It's not an action card, but it's special! When a 7 is played,
+            everyone must quickly slap their hand in the middle. The last player
+            to do so draws two cards as a penalty!
+          </p>
+          <p>
+            <div class="card big amber nr-7"></div>
+          </p>
+        </div>
+        <div id="cutting-in" class="slide">
+          <h2>Special Rule: Cutting In!</h2>
+          <p>
+            Speed is key! If another player is about to play, and you have the
+            EXACT SAME CARD (matching number/action AND color) as the top of the
+            Gameplay Pile, you can "cut in"! Play it quicker than the active
+            player, and it becomes your turn.
+          </p>
+          <div class="stack-on-top">
+            <div class="card big rouge nr-3"></div>
+            <div class="card big rouge nr-3"></div>
+          </div>
+        </div>
+        <div id="cutting-risk" class="slide">
+          <h2>Cutting In: The Risk</h2>
+          <p>
+            If you try to cut in but are too slow (you play after the active
+            player), you draw two cards as a penalty! If your cut is successful,
+            the game continues from you.
+          </p>
+        </div>
+        <div id="stacking" class="slide">
+          <h2>Special Rule: Stacking Cards</h2>
+          <p>
+            On your turn, you can play multiple cards if they are the same
+            number. You can also stack Pick Two or Change Color Pick Four cards.
+            The next player draws the total sum of all stacked cards! Stacking
+            U-turn cards means the direction reverses if the total is odd,
+            otherwise it stays the same.
+          </p>
+          <div class="stack-on-top">
+            <div class="card big rouge nr-4"></div>
+            <div class="card big amber nr-4"></div>
+            <div class="card big violet nr-4"></div>
+          </div>
+        </div>
+        <div id="no-stacking-thief" class="slide">
+          <h2>No Stacking for the Thief!</h2>
+          <p>
+            You cannot stack Thief cards! You can only play one "swap hands"
+            card at a time. Don't collect them, it actually works against you!
+          </p>
+          <div class="stack-on-top">
+            <div class="card big action-card-thief"></div>
+            <div class="card big action-card-thief"></div>
+            <div class=" cross-over-red-cross"></div>
+          </div>
+        </div>
+        <div id="last-card" class="slide">
+          <h2>Last Card: Yell "SORRY!"</h2>
+          <p>
+            When you have only one card left, you MUST yell "SORRY!"
+          </p>
+        </div>
+        <div id="sorry-vs-not" class="slide">
+          <h2>"SORRY!" vs. "NOT SORRY!"</h2>
+          <p>This is where friendships are tested!</p>
+          <p>
+            If another player yells "SORRY!" before you did, draw two penalty cards!
+          </p>
+          <p>
+            There can be a few different scenarios:
+          </p>
+          <ul>
+            <li>
+              You yell "SORRY!" first: Player countering you draws 2 cards.
+            </li>
+            <li>Both of you yell at almost the same time: Both draw 1 card.</li>
+            <li>You're too slow to yell "SORRY!": You draw 2 cards.</li>
+          </ul>
+        </div>
+        <div id="sneaky-win" class="slide">
+          <h2>Sneaky Win (No "Sorry!")</h2>
+          <p>
+            You can win without yelling "SORRY!" if you play two exactly
+            identical number cards (same number AND same color) as your final
+            play.
+          </p>
+          <div class="stack-on-top">
+            <div class="card big rouge nr-10"></div>
+            <div class="card big rouge nr-10"></div>
+          </div>
+        </div>
+        <div id="naming-colors" class="slide">
+          <h2>Naming Colors</h2>
+          <p>
+            When playing a "Change Color" card, you MUST announce the next color
+            using its proper name:
+            <ul>
+              <li>rouge
+                <div class="card rouge nr-0"></div>
+              </li>
+              <li>amber
+                <div class="card amber nr-0"></div>
+              </li>
+              <li>turquoise
+                <div class="card turquoise nr-0"></div>
+              </li>
+              <li>violet
+                <div class="card violet nr-0"></div>
+              </li>
+            </ul>
+            Say "red" instead of "rouge"? You draw two penalty cards!
+          </p>
+          <p></p>
+        </div>
+        <div id="winning" class="slide">
+          <h2>Winning the Game!</h2>
+          <p>
+            Your last card must be a number card, not an action card. You cannot
+            stack your last cards unless they are number cards with the exact
+            same color and number.
+          </p>
+          <div class="stack-on-top">
+            <div class="card big rouge action-card-u-turn"></div>
+            <div class="cross-over-red-cross"></div>
+          </div>
+          <div class="stack-on-top">
+            <div class="card big rouge nr-2"></div>
+            <div class="card big amber nr-2"></div>
+            <div class="cross-over-red-cross"></div>
+          </div>
+        </div>
+        <div id="seven-win" class="slide">
+          <h2>The Number 7 Win Exception</h2>
+          <p>
+            If your winning last card is a Number 7, everyone still has to do
+            the hand-placing penalty. If you're last to place your hand, you
+            might even get a penalty after winning!
+          </p>
+        </div>
+        <div id="scoring" class="slide">
+          <h2>Scoring & Victory</h2>
+          <p>
+            Once a player has no cards, the round ends. The winner gets 1 point.
+            You can agree on a target score (e.g., 5 points) to win the overall
+            game!
+          </p>
+        </div>
+        <div id="no-mercy" class="slide">
+          <h2>Extra: Question Card</h2>
+          <p>
+            Before the game starts, the game players decide if they want to have this card
+            in the deck. This card can be any action of your choice!
+          </p>
+          <p>
+            For example:
+          </p>
+          <ul>
+            <li>Challenge any player to play rock paper scissors and the looser draws 2 cards</li>
+            <li>Player who plays this card can choose any player to pick one extra card</li>
+          </ul>
+          <div class="card big amber action-card-question-mark"></div>
+        </div>
+        <div id="no-mercy" class="slide">
+          <h2>Extra Spicy Mod: No Mercy Mode</h2>
+          <p>
+            For extra chaos! If a player makes any mistake (like not playing
+            when it's their turn, or playing an incorrect card), they
+            immediately draw two cards as a penalty.
+          </p>
+        </div>
+      </div>
+      <button class="nav-arrow left" onclick="navigateSlide(-1)"></button>
+      <button class="nav-arrow right" onclick="navigateSlide(1)"></button>
+    </div>
+    <div class="progress-dots">
+      <div class="slide-counter">
+        <span class="current">1</span>
+        <span class="separator">/</span>
+        <span class="total">0</span>
+      </div>
+    </div>
+
+    <script>
+      const container = document.querySelector(".slideshow-container");
+      const slides = document.querySelectorAll(".slide");
+      const currentSlide = document.querySelector(".current");
+      const totalSlides = slides.length;
+      let currentSlideIndex = 0;
+
+      function updateSlideCounter() {
+        currentSlide.textContent = currentSlideIndex + 1;
+      }
+
+      function navigateSlide(direction) {
+        const newIndex = currentSlideIndex + direction;
+        if (newIndex >= 0 && newIndex < totalSlides) {
+          currentSlideIndex = newIndex;
+          const slide = slides[currentSlideIndex];
+          container.scrollTo({
+            left: slide.offsetLeft,
+            behavior: "smooth",
+          });
+          updateSlideCounter();
+          updateURL();
+        }
+      }
+
+      function updateURL() {
+        const slideId = slides[currentSlideIndex].id;
+        history.replaceState(null, null, `#${slideId}`);
+      }
+
+      function handleScroll() {
+        const slideWidth = container.clientWidth;
+        const scrollPosition = container.scrollLeft;
+        const newIndex = Math.round(scrollPosition / slideWidth);
+
+        if (newIndex !== currentSlideIndex) {
+          currentSlideIndex = newIndex;
+          updateSlideCounter();
+          updateURL();
+        }
+      }
+
+      function handleHashChange() {
+        const hash = window.location.hash.slice(1);
+        if (hash) {
+          const targetSlide = document.getElementById(hash);
+          if (targetSlide) {
+            currentSlideIndex = Array.from(slides).indexOf(targetSlide);
+            container.scrollTo({
+              left: targetSlide.offsetLeft,
+              behavior: "smooth",
+            });
+            updateSlideCounter();
+          }
+        }
+      }
+
+      // Initialize
+      container.addEventListener("scroll", handleScroll);
+      window.addEventListener("hashchange", handleHashChange);
+      document.querySelector('.total').textContent = totalSlides;
+
+      // Handle initial hash
+      if (window.location.hash) {
+        handleHashChange();
+      } else {
+        updateURL();
+      }
+    </script>
+  </body>
+</html>
