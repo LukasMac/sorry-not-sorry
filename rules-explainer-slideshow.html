@@ -332,6 +332,18 @@
         scrollbar-width: none;
       }
 
+      .next-slide {
+        background: none;
+        border: 1px solid #1db954;
+        cursor: pointer;
+        font-size: 18px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: #1db954;
+        font-weight: 600;
+        margin: 0 10px;
+      }
+
       .stack-row {
         display: flex;
         flex-direction: row;
@@ -517,10 +529,10 @@
         <div id="welcome" class="slide">
           <h2>Rules Explainer Slideshow</h2>
           <p>
-            Use the left and right arrow keys or swipe to navigate through this slideshow explaining the rules of the game. Each slide will walk you through a different aspect of gameplay.
+            Use the left and right arrow keys or swipe left/right to navigate through this slideshow explaining the rules of the game. Each slide will walk you through a different aspect of gameplay.
           </p>
           <p class="hint">
-            <span>←</span> Previous slide &nbsp;&nbsp;|&nbsp;&nbsp; Next slide <span>→</span>
+            <button class="next-slide" onclick="navigateSlide(1)">Next slide <span>→</span></button>
           </p>
         </div>
         <div id="welcome" class="slide">
@@ -638,7 +650,7 @@
           </p>
         </div>
         <div id="change-color-silent" class="slide">
-          <h2>Action Card: Change Color Silent Mode</h2>
+          <h2>Action Card: Change Color (Silent Mode)</h2>
           <p>
             Play this on ANY card and choose the next color. But beware:
             everyone must stop talking! Only sounds and laughs are allowed. Say
@@ -667,7 +679,7 @@
             no other matching color card in your hand.
           </p>
           <p>
-            <div class="card big violet action-card-change-color-talk"></div>
+            <div class="card big violet action-card-pick-four"></div>
           </p>
         </div>
         <div id="challenge" class="slide">
@@ -696,7 +708,7 @@
           <h2>Special Card: Number 7 (Hand Placing)</h2>
           <p>
             It's not an action card, but it's special! When a 7 is played,
-            everyone must quickly slap their hand in the middle. The last player
+            everyone must quickly slap their hand on top of the Gameplay Pile (the pile of cards that is being played). The last player
             to do so draws two cards as a penalty!
           </p>
           <p>
@@ -791,23 +803,29 @@
           <p>
             When playing a "Change Color" card, you MUST announce the next color
             using its proper name:
-            <ul>
-              <li>rouge
-                <div class="card rouge nr-0"></div>
-              </li>
-              <li>amber
-                <div class="card amber nr-0"></div>
-              </li>
-              <li>turquoise
-                <div class="card turquoise nr-0"></div>
-              </li>
-              <li>violet
-                <div class="card violet nr-0"></div>
-              </li>
-            </ul>
+          </p>
+
+          <div class="stack-row">
+            <div>
+              Rouge
+              <div class="card rouge nr-0"></div>
+            </div>
+            <div>
+              Amber
+              <div class="card amber nr-0"></div>
+            </div>
+            <div>
+              Turquoise
+              <div class="card turquoise nr-0"></div>
+            </div>
+            <div>
+              Violet
+              <div class="card violet nr-0"></div>
+            </div>
+          </div>
+          <p>
             Say "red" instead of "rouge"? You draw two penalty cards!
           </p>
-          <p></p>
         </div>
         <div id="winning" class="slide">
           <h2>Winning the Game!</h2>
@@ -845,7 +863,7 @@
         <div id="no-mercy" class="slide">
           <h2>Extra: Question Card</h2>
           <p>
-            Before the game starts, the game players decide if they want to have this card
+            Before the game starts, the game players decide if they want to include this card
             in the deck. This card can be any action of your choice!
           </p>
           <p>
